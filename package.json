@@ -1,0 +1,39 @@
+{
+  "name": "taskback",
+  "version": "1.0.0-alpha",
+  "description": "A simple MEAN stack platform to manage personal tasks and TODO lists",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/necavit/taskback.git"
+  },
+  "keywords": [
+    "mongodb",
+    "express",
+    "angular",
+    "todo",
+    "task",
+    "lists",
+    "personal",
+    "management"
+  ],
+  "author": "necavit (David Martínez Rodríguez)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/necavit/taskback/issues"
+  },
+  "homepage": "https://github.com/necavit/taskback#readme",
+  "engines": {
+    "node": "4.3.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.4",
+    "morgan": "^1.7.0",
+    "winston": "^2.1.1"
+  }
+}

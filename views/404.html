@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Where art thou?</title>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Taskback Not Found" />
+  <meta name='robots' content='noindex,follow' />
+  <style type="text/css">
+    body {
+      font-family: "Courier New", Courier, monospace;
+      color: #000;
+    }
+    #container {
+      display: block;
+      width: 495px;
+      margin: auto;
+    }
+    #error-message {
+      font-size: 80px;
+      margin-top: 80px;
+      width: 100%;
+    }
+    #countdown {
+      font-size: 35px;
+      font-weight: bold;
+    }
+  </style>
+  <script type="text/javascript">
+    var seconds = 6;
+    function countdown() {
+      seconds = seconds - 1;
+      if (seconds < 0) {
+        window.location="http://thecodinglove.com/random";
+      }
+      else {
+        document.getElementById("countdown").innerHTML = seconds;
+        window.setTimeout("countdown()", 1000);
+      }
+    }
+  </script>
+</head>
+<body onload="countdown()">
+  <div id="container">
+    <h1 id="error-message">ERROR #404</h1>
+    <p>You will be redirected in <span id="countdown">5</span> seconds...</p>
+  </div>
+</body>
+</html>

@@ -1,12 +1,3 @@
-# Table of Contents
-
-1. [taskback](#taskback)
-  1. [Documentation generation](#documentation-generation)
-1. [Deployment](#deployment)
-1. [Database](#database)
-
-
-# taskback
 **taskback** is a simple MEAN stack platform to manage personal TODO and task lists.
 
 ### But... Why?
@@ -41,30 +32,3 @@ And it is indeed for fun. And learning, mostly learning.
   * Create a shop list item (just a title)
   * Archive an item (on completion, by default)
   * Delete an item
-
-
-## Documentation generation
-This README file is generated from smaller modules, using the awesome [markdown-include](https://github.com/sethen/markdown-include) CLI tool. It can be found in the [NPM repository](https://www.npmjs.com/package/markdown-include) and installed as a global package by: `sudo npm install -g markdown-include`.
-
-To generate the README, execute:
-
-```bash
-markdown-include docs/documentation.json
-```
-
-from the root of the project, where `documentation.json` is the config file used by the tool to wire up all the components and generate the table of contents as well. Actually, the only file being processed by `markdown-include` is `docs/_README.md`, which contains all the necessary documentation files inclusions, in the form of `#include docs/database.md`, for example.
-
-
-# Deployment
-
-To deploy the server into production, just execute:
-
-```bash
-git push deploy master
-```
-And you are done!
-
-# Database
-
-The database that `taskback` is using is [MongoDB](https://www.mongodb.org/)
-
