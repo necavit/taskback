@@ -1,8 +1,6 @@
-# taskback !heading
-#include "docs/introduction.md"
+# WORK IN PROGRESS
 
-## Documentation generation !heading
-#include "docs/documentation-generation.md"
+**This is just a documentation test file to see if the framework works!**
 
-#include "docs/deployment.md"
-#include "docs/database.md"
+#include "docs/infrastructure/deployment.md"
+#include "docs/infrastructure/database.md"
