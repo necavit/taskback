@@ -1,6 +1,6 @@
 {
-  "build": "README.md",
-  "files": ["docs/_README.md"],
+  "build": "docs/dev-manual.md",
+  "files": ["docs/_index.md"],
   "tableOfContents": {
     "heading": "# Table of Contents",
     "lead": "number"
