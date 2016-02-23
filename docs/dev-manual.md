@@ -5,7 +5,6 @@
   1. [Node](#node)
   1. [Security](#security)
   1. [MongoDB](#mongodb)
-1. [Database](#database)
   1. [Deployment](#deployment)
 1. [Deployment](#deployment)
 1. [The Taskback server](#the-taskback-server)
@@ -155,8 +154,6 @@ http {
 
 
 ## MongoDB
-# Database
-
 The database that `taskback` is using is [MongoDB](https://www.mongodb.org/)
 
 
