@@ -6,7 +6,6 @@
   1. [Security](#security)
   1. [MongoDB](#mongodb)
   1. [Deployment](#deployment)
-1. [Deployment](#deployment)
 1. [The Taskback server](#the-taskback-server)
   1. [Logger](#logger)
   1. [Internal Module Requires](#internal-module-requires)
@@ -158,8 +157,6 @@ The database that `taskback` is using is [MongoDB](https://www.mongodb.org/)
 
 
 ## Deployment
-# Deployment
-
 To deploy the server into production, just execute:
 
 ```bash
