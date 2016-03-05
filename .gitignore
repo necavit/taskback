@@ -1,6 +1,9 @@
 # Production properties file
 prod-properties.js
 
+# Infrastructure (nginx and git hooks) files
+infrastructure/
+
 # Logs
 logs
 *.log
