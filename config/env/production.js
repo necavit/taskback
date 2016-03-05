@@ -22,4 +22,4 @@ module.exports = (function () {
 
   // return the whole configuration object
   return config;
-});
+})();
