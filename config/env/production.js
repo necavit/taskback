@@ -2,7 +2,7 @@ module.exports = (function () {
   var config = {};
 
   // properties file not checked into Git!
-  var prod = require('./prod-properties.js');
+  var prod = require('./prod-properties');
 
   // check that the mongodb environment is correct
   if (!prod) {
@@ -12,9 +12,10 @@ module.exports = (function () {
 
   // add the mongodb credentials to the connection URL
   config.mongodb = {};
-  config.mongodb.url = prod.mongo.uri
-    .replace('<dbuser>',prod.mongo.usr)
-    .replace('<dbpassword>'.prod.mongo.pwd);
+  var mongoUrl = prod.mongo.uri
+    .replace('<dbuser>', prod.mongo.usr)
+    .replace('<dbpassword>', prod.mongo.pwd);
+  config.mongodb.url = mongoUrl;
 
   // set up the port to which the server will listen
   config.port = prod.port;
