@@ -1,3 +1,6 @@
+# Production properties file
+prod-properties.js
+
 # Logs
 logs
 *.log
