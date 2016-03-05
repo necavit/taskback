@@ -2,7 +2,7 @@
 prod-properties.js
 
 # Infrastructure (nginx and git hooks) files
-infrastructure/
+infrastructure-config/
 
 # Logs
 logs
