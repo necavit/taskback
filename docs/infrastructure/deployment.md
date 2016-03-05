@@ -1,3 +1,5 @@
+Git hooks
+
 To deploy the server into production, just execute:
 
 ```bash
