@@ -1,14 +1,16 @@
 # Taskback
 
-**Taskback** is a simple MEAN stack platform to manage personal TODO and task lists. You can check the [list of features](#features) to get a better idea of what it does.
+**Taskback** is a MEAANN (MongoDB, ExpressJS, AngularJS, Android, NodeJS, Nginx) stack platform to manage personal TODO and task lists. You can check the [list of features](#features) to get a better idea of what it does.
+
+**[Documentation](docs/dev-manual.md)**
 
 #### But... Why?
 
 There are tons of apps and services to manage TODO lists, tasks and information lists. I know that. I use some of them, but none have proven to be flexible and light-weight enough for my needs. Besides, no task management service or app supports [Gingerbread](http://developer.android.com/about/dashboards/index.html#Platform) anymore, even though we are still quite a lot of users out there, so this is a way to keep my device running this kind of application.
 
-And it is indeed for fun. And learning, mostly learning.
+And it is indeed for fun. And learning, mostly learning!
 
-#### The ecosystem
+### The ecosystem
 
 The Taskback ecosystem consists of the following pieces: a MongoDB database, a NodeJS server (using ExpressJS as the web framework of choice), an AngularJS web app and a native Android app.
 
