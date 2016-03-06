@@ -2,7 +2,7 @@
 
 **Taskback** is a MEAANN (MongoDB, ExpressJS, AngularJS, Android, NodeJS, Nginx) stack platform to manage personal TODO and task lists. You can check the [list of features](#features) to get a better idea of what it does.
 
-**[Documentation](docs/dev-manual.md)**
+> Shortcut: **[Developer Manual](docs/dev-manual.md)**
 
 #### But... Why?
 
