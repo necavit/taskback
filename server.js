@@ -37,15 +37,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // serve static files under the 'public' directory
-// TODO app.use(express.static('public'));
+app.use(express.static('public'));
 
 // routing
-// var apiRouter = require('./routes/api'); // API router
-// app.use('/api', apiRouter()); //
+var apiRouter = require('./routes/api'); // API router
+app.use('/api', apiRouter()); // register the API routes under /api
 
 // assume any other route as not found: 404 handler (last route handler!)
 app.use(function (req, res, next) {
-  res.status(404).sendFile(__dirname + '/views/404.html');
+  res.status(404).sendFile(__dirname + '/public/html/404.html');
 });
 
 // error handling middleware (last of all!)

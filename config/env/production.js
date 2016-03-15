@@ -1,12 +1,13 @@
 module.exports = (function () {
   var config = {};
+  var logger = appRequire('utils/logger');
 
   // properties file not checked into Git!
   var prod = require('./prod-properties');
 
   // check that the mongodb environment is correct
   if (!prod) {
-    console.error('Production properties file not loaded. Please check its existence and the values it has.');
+    logger.error('Production properties file not loaded. Please check its existence and the values it has.');
     process.exit(1);
   }
 
