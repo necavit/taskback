@@ -1,5 +1,3 @@
-**Work in progress!**
-
 The deployment of the Taskback server is done using a [bare Git repository](http://stackoverflow.com/a/7861254) together with a [`post-receive` Git hook](http://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks). The following diagram illustrates the deployment process.
 
 ![Taskback Deployment](img/taskback-deployment.png)
@@ -52,9 +50,13 @@ pushd $PUBLIC_WWW
 npm install
 forever_command="restartall"
 if forever list | grep -q "No forever processes running"; then
-  forever_command="start server.js";
+  forever_command="start";
 fi
-NODE_ENV=production forever $forever_command
+NODE_ENV=production forever $forever_command \
+  -a -l $(pwd)/logs/forever.log -o $(pwd)/logs/sys-out.log -e $(pwd)/logs/sys-err.log \
+  --uid "taskback-production" \
+  --minUptime 5000 --spinSleepTime 2000 \
+  server.js
 popd
 exit
 ```

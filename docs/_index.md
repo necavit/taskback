@@ -1,7 +1,3 @@
-# WORK IN PROGRESS
-
-**This is just a documentation test file to see if the framework works!**
-
 # Infrastructure !heading
 
 Informally, the Taskback platform infrastructure can be described by the following diagram:
@@ -30,10 +26,13 @@ The following subsections deal with the details of each of the pieces of this in
 
 # The Taskback server !heading
 
-The following sections cover not the features implementation details, but some of the inner mechanisms and particular developments of the Taskback node.js server.
+The following sections cover not the features implementation details, but some of the inner mechanisms and particular developments of the Taskback Node.js server. If you want, go take a look at the [REST API section](#api) for more information about features!
 
 ## Logger !heading
 #include "docs/taskback-server/logger.md"
 
 ## Internal Module Requires !heading
 #include "docs/taskback-server/require-apprequire.md"
+
+# REST API !heading
+#include "docs/api/api.md"

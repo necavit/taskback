@@ -9,11 +9,8 @@
 1. [The Taskback server](#the-taskback-server)
   1. [Logger](#logger)
   1. [Internal Module Requires](#internal-module-requires)
+1. [REST API](#rest-api)
 
-
-# WORK IN PROGRESS
-
-**This is just a documentation test file to see if the framework works!**
 
 # Infrastructure
 
@@ -190,12 +187,52 @@ The generation, installation and use of the SSL certificate was already covered 
 ## MongoDB
 **Work in progress!**
 
-The database that `taskback` is using is [MongoDB](https://www.mongodb.org/)
+The database that `taskback` is using is [MongoDB](https://www.mongodb.org/). The choice was motivated by the ease of integration between Node and the database, given that the maturity of the connector (the [mongoose](http://mongoosejs.com) library) is high and the language (Javascript) is the same in both platforms.
+
+### Deployment and security
+
+During the initial development phase of Taskback, the MongoDB database used is hosted by [MLab](https://mlab.com), using a free and small-scale [sandbox deployment](https://mlab.com/plans/pricing). Check the following section to learn how the Taskback server connects to the database.
+
+**WARNING!!**
+
+Before deploying a production version of the Taskback server (`alpha` or `beta` versions), remember to revert the connection of the database to a local one, to avoid non-encrypted communication between the Taskback back-end and the MLab hosted database. As explained in their [documentation site](http://docs.mlab.com/ssl-db-connections), MLab do not offer SSL/TLS protected connections to either the *sandbox* or the *shared* plans, at the time of this writing (15th March, 2016).
+
+#### Localhost deployment
+
+To ease the development of Taskback in the local environment, an instance of MongoDB is set up in the development machine, as done by following the next instructions, grabbed from the original [tutorial](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu).
+
+To install MongoDB, in Ubuntu, just issue the commands:
+
+```bash
+# Import the public key used by the package management system.
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+
+# Create a list file for MongoDB.
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+# Reload local package database.
+sudo apt-get update
+
+# Install the MongoDB packages.
+sudo apt-get install -y mongodb-org
+```
+
+The default `/etc/mongod.conf` configuration file supplied by the packages have the `bind_ip` property set to `127.0.0.1` by default, so no further configuration is needed to keep the database local.
+
+To `start`, `stop`, `restart` the `mongod` service deamon, issue the usual service commands:
+
+```bash
+sudo service mongod start
+```
+
+### Connection credentials
+
+The production pre-`alpha` deployment uses an MLab hosted MongoDB database, which requires a user-password secured connection. The details of the connection (the URI, `username` and `password`) are stored in a properties configuration file that is **NOT** checked in to the code repository. This file is, however, required by the `config` module of the Taskback server, which will emit an error if it does not find it.
+
+To connect to the local database instance in the development environment, the values used in the `config/env/development.js` file are used.
 
 
 ## Deployment
-**Work in progress!**
-
 The deployment of the Taskback server is done using a [bare Git repository](http://stackoverflow.com/a/7861254) together with a [`post-receive` Git hook](http://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks). The following diagram illustrates the deployment process.
 
 ![Taskback Deployment](img/taskback-deployment.png)
@@ -248,9 +285,13 @@ pushd $PUBLIC_WWW
 npm install
 forever_command="restartall"
 if forever list | grep -q "No forever processes running"; then
-  forever_command="start server.js";
+  forever_command="start";
 fi
-NODE_ENV=production forever $forever_command
+NODE_ENV=production forever $forever_command \
+  -a -l $(pwd)/logs/forever.log -o $(pwd)/logs/sys-out.log -e $(pwd)/logs/sys-err.log \
+  --uid "taskback-production" \
+  --minUptime 5000 --spinSleepTime 2000 \
+  server.js
 popd
 exit
 ```
@@ -297,10 +338,35 @@ fi
 
 # The Taskback server
 
-The following sections cover not the features implementation details, but some of the inner mechanisms and particular developments of the Taskback node.js server.
+The following sections cover not the features implementation details, but some of the inner mechanisms and particular developments of the Taskback Node.js server. If you want, go take a look at the [REST API section](#api) for more information about features!
 
 ## Logger
 
 
 ## Internal Module Requires
+Inspired by [Branneman's gist](https://gist.github.com/branneman/8048520#7-the-wrapper), a global function is available for all the internal Node modules to *require* other internal modules, without having to use relative paths.
+
+The function is placed at the very beginning of the `server.js` file, making it available for the remaining modules at the server's start up:
+
+```javascript
+global.appRequire = function(name) {
+    return require(__dirname + '/' + name);
+}
+```
+
+An internal module path is then defined from the root directory of the server, without the initial `/` directory separator. As an example, instead of requiring a module as:
+
+```javascript
+var User = require('../../models/users')
+```
+
+We can do it as:
+
+```javascript
+var User = appRequire('models/user')
+```
+
+
+# REST API
+The REST API is modeled using [RAML](http://raml.org/) (Restful API Modelling Language). A complete specification can be found in the [API RAML document](api/api.raml) or in its [HTML nicer version](https://taskback.davidmr.es/docs/api).
 

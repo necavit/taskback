@@ -1,0 +1,14 @@
+#%RAML 0.8
+title: Taskback
+version: 1.0.0
+baseUri: taskback.davidmr.es/api
+/helloWorld:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "message" : "Hello World"
+              }
